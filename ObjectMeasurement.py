@@ -4,23 +4,24 @@ import utlis
 ###################################
 webcam = True
 path = '1.jpg'
-cap = cv2.VideoCapture(0)
+'''cap = cv2.VideoCapture(0)
 cap.set(10,160)
 cap.set(3,1920)
-cap.set(4,1080)
+cap.set(4,1080)'''
 scale = 3
 wP = 210 *scale
 hP= 297 *scale
 ###################################
+"""    if webcam:success,img = cap.read()
+    else: img = cv2.imread(path)"""
 
 while True:
-    if webcam:success,img = cap.read()
-    else: img = cv2.imread(path)
+    img = cv2.imread(path)
 
     imgContours , conts = utlis.getContours(img,minArea=50000,filter=4)
     if len(conts) != 0:
         biggest = conts[0][2]
-        #print(biggest)
+        print(biggest)
         imgWarp = utlis.warpImg(img, biggest, wP,hP)
         imgContours2, conts2 = utlis.getContours(imgWarp,
                                                  minArea=2000, filter=4,
